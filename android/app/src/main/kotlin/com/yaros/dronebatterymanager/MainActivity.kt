@@ -1,4 +1,4 @@
-package com.example.lipobatterymanager
+package com.yaros.dronebatterymanager
 
 import io.flutter.embedding.android.FlutterActivity
 

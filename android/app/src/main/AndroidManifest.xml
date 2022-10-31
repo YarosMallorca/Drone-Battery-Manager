@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lipobatterymanager">
+    package="com.yaros.dronebatterymanager">
    <application
-        android:label="LiPo Battery Manager"
+        android:label="Drone Battery Manager"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
