@@ -105,15 +105,20 @@ class _LiPoDrawer extends State<LiPoDrawer> {
                         ),
                       ),
                       actions: <Widget>[
+                        TextButton(
+                          child: const Text('Cancel'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
                         if (aircraftList.length > 1) ...[
                           TextButton(
                               child: const Text("Delete"),
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 setState(() {
-                                  StorageManager.setBatteryChargeCycles(
-                                      StorageManager.getAircraftList()![i], []);
-                                  //aircraftList.removeAt(i);
+                                  StorageManager.deleteAircraftCycles(
+                                      StorageManager.getAircraftList()![i]);
                                   removeItem(i);
                                   StorageManager.setAircraftList(aircraftList);
                                 });
@@ -126,7 +131,18 @@ class _LiPoDrawer extends State<LiPoDrawer> {
                               if (_editFormKey.currentState!.validate()) {
                                 aircraftList[i] =
                                     editAircraftNameController.text;
+                                if (StorageManager.getAircraftList()![i] !=
+                                    editAircraftNameController.text) {
+                                  StorageManager.setBatteryChargeCycles(
+                                      editAircraftNameController.text,
+                                      StorageManager.getBatteryChargeCycles(
+                                          StorageManager.getAircraftList()![
+                                              i])!);
+                                  StorageManager.deleteAircraftCycles(
+                                      StorageManager.getAircraftList()![i]);
+                                }
                                 StorageManager.setAircraftList(aircraftList);
+
                                 Navigator.of(context).pop();
                               }
                             });

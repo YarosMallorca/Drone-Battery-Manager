@@ -8,12 +8,13 @@ class StorageManager {
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();
 
+  static Future clear() async => await _preferences.clear();
+
   static List<String>? getAircraftList() =>
       _preferences.getStringList(_keyAircraftList);
 
-  static Future setAircraftList(List<String> aircraftList) async {
-    await _preferences.setStringList(_keyAircraftList, aircraftList);
-  }
+  static Future setAircraftList(List<String> aircraftList) async =>
+      await _preferences.setStringList(_keyAircraftList, aircraftList);
 
   static List<String>? getBatteryChargeCycles(aircraftName) =>
       _preferences.getStringList("$aircraftName Cycles");
@@ -32,7 +33,9 @@ class StorageManager {
 
   static String? getTheme() => _preferences.getString("theme");
 
-  static Future setTheme(String theme) async {
-    await _preferences.setString("theme", theme);
-  }
+  static Future setTheme(String theme) async =>
+      await _preferences.setString("theme", theme);
+
+  static Future deleteAircraftCycles(String aircraftName) async =>
+      await _preferences.remove("$aircraftName Cycles");
 }

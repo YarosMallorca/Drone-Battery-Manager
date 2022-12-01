@@ -143,6 +143,12 @@ class _AircraftScreen extends State<AircraftScreen> {
           ),
           actions: <Widget>[
             TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
               child: const Text('Delete'),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -230,9 +236,6 @@ class _AircraftScreen extends State<AircraftScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double logicWidth = 450;
-    double logicHeight = 850;
-
     listItems = List<Widget>.generate(
         batteryList.length,
         (i) => Padding(
@@ -240,7 +243,7 @@ class _AircraftScreen extends State<AircraftScreen> {
               child: InkWell(
                 onLongPress: () => deleteBattery(i),
                 child: Container(
-                  padding: const EdgeInsets.only(bottom: 15, top: 15),
+                  padding: const EdgeInsets.only(bottom: 20, top: 20),
                   decoration: BoxDecoration(
                       color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -478,7 +481,7 @@ class _AircraftScreen extends State<AircraftScreen> {
                         )),
               ),
             ],
-            title: Text("Drone Battery Manager"),
+            title: Text(widget.aircraftName),
           ),
           drawer: LiPoDrawer(),
           // MAIN BODY
@@ -490,8 +493,8 @@ class _AircraftScreen extends State<AircraftScreen> {
                   fit: BoxFit.contain,
                   alignment: Alignment.center,
                   child: SizedBox(
-                      width: logicWidth,
-                      height: logicHeight,
+                      width: 450,
+                      height: 850,
                       child: Column(children: [
                         Expanded(
                           child: AnimatedList(
